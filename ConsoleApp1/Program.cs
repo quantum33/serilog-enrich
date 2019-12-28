@@ -45,7 +45,7 @@ namespace ConsoleApp1
                 Data = new Person
                 {
                     Name = "Demiurgo",
-                    FirstName = "Thierry",
+                    FirstName = "Yeah",
                 }
             });
         }

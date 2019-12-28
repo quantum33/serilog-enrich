@@ -20,15 +20,15 @@ namespace LoggingLib
 
             Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
-                .Enrich.With(new ContextEnricher(context))
-                .Destructure.ByTransforming<Context>(
-                    c => new
-                    {
-                        User = c.UserId,
-                        TraceId = c.TraceId,
-                        ApplicationName = c.Application.Name,
-                        ApplicationVersion = c.Application.Version
-                    })
+                // .Enrich.With(new ContextEnricher(context))
+                // .Destructure.ByTransforming<Context>(
+                //     c => new
+                //     {
+                //         User = c.UserId,
+                //         TraceId = c.TraceId,
+                //         ApplicationName = c.Application.Name,
+                //         ApplicationVersion = c.Application.Version
+                //     })
                 .WriteTo.Console(new LogEntryFormatter(context))
                 .CreateLogger();
 
