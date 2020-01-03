@@ -15,7 +15,6 @@ namespace ConsoleApp1
 
         public void Run()
         {
-            Console.WriteLine("Hello SAMPLE");
             _logger.LogInformation(new Payload<Person>
             {
                 Data = new Person
