@@ -16,7 +16,7 @@ namespace LoggingLib
 
         private static ILogger CreateLogger() => new LoggerConfiguration()
             .Enrich.FromLogContext()
-            // .Enrich.With(new ContextEnricher(context))
+            .Enrich.With(new ContextEnricher())
             // .Destructure.ByTransforming<Context>(
             //     c => new
             //     {
@@ -25,7 +25,7 @@ namespace LoggingLib
             //         ApplicationName = c.Application.Name,
             //         ApplicationVersion = c.Application.Version
             //     })
-            .WriteTo.Console(new LogEntryFormatter(CreateContext()))
+            .WriteTo.Console(new LogEntryFormatter(/*CreateContext()*/))
             .CreateLogger();
 
         private static Context CreateContext() => new Context
