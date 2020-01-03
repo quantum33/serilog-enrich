@@ -1,5 +1,6 @@
 ﻿using System;
 using LoggingLib;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
@@ -11,14 +12,18 @@ namespace ConsoleApp1
         {
             Console.WriteLine("Hello World!");
 
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+            
             var collection = new ServiceCollection();
             collection
-                .AddLogging(builder => builder.AddCustomLogger())
+                .AddLogging(builder => builder.AddCustomLogger(configuration))
                 .AddSingleton<SampleApplication>();
 
-            var serviceProvider = collection.BuildServiceProvider();
+            ServiceProvider serviceProvider = collection.BuildServiceProvider();
 
-            var sampleApplication = serviceProvider.GetService<SampleApplication>();
+            SampleApplication sampleApplication = serviceProvider.GetService<SampleApplication>();
 
             sampleApplication.Run();
 
